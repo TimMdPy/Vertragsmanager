@@ -109,6 +109,13 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="ilA-n7-ybh" secondAttribute="trailing" constant="5" id="zIV-3T-raA"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="durationLabel" destination="ki9-Lq-eaL" id="01A-gP-uhz"/>
+                                            <outlet property="endLabel" destination="bTY-YO-vgu" id="3ac-Li-oIP"/>
+                                            <outlet property="nameLabel" destination="fUO-un-Ogf" id="nEd-78-qJD"/>
+                                            <outlet property="priceLabel" destination="KMQ-Pk-XhF" id="okf-2R-sFR"/>
+                                            <outlet property="startLabel" destination="QvU-S6-8eB" id="dIq-ci-SUS"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
