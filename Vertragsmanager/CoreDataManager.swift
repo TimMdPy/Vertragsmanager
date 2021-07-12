@@ -27,5 +27,23 @@ class CoreDataManager {
         context = appDelegate.persistentContainer.viewContext
     }
     
+    func count(section: Int) -> Int {
+        var count = 0
+        switch section {
+        case 0:
+            count = carContractCategory.count
+        case 1:
+            count = phoneContractCategory.count
+        case 2:
+            count = homeContractCategory.count
+        case 3:
+            count = insuranceContractCategory.count
+        default:
+            break
+        }
+        
+        return count
+    }
+    
 }
 
