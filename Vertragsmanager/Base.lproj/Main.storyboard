@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Verträge-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Vertragsmanager" customModuleProvider="target" sceneMemberID="viewController">
@@ -118,6 +118,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="w7I-W8-jdS"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="6Mu-Nb-kVt"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -129,9 +133,12 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZNQ-bE-Bvg" secondAttribute="trailing" id="uMB-LV-vyg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Cnj-Tx-79x">
+                    <navigationItem key="navigationItem" title="Verträge" id="Cnj-Tx-79x">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xtl-Qk-Y6S"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="contractTableView" destination="ZNQ-bE-Bvg" id="AFX-GY-BXO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -142,8 +149,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Azu-er-8Aw" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="i54-jp-xSq">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="i54-jp-xSq">
+                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
