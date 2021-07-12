@@ -134,7 +134,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Verträge" id="Cnj-Tx-79x">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xtl-Qk-Y6S"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="Xtl-Qk-Y6S">
+                            <connections>
+                                <action selector="addNewContractButton_Tapped:" destination="BYZ-38-t0r" id="LU1-o4-DcP"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="contractTableView" destination="ZNQ-bE-Bvg" id="AFX-GY-BXO"/>

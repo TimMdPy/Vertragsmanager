@@ -19,9 +19,29 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
-
+    
+    
+    @IBAction func addNewContractButton_Tapped(_ sender: UIBarButtonItem) {
+        let chooseCategoryAction = UIAlertController(title: "Kategorie", message: "Bitte wähle eine Kategorie aus.", preferredStyle: .alert)
+        
+        for index in 0..<category.count {
+            chooseCategoryAction.addAction(createAlertAction(category: category[index]))
+        }
+        
+        self.present(chooseCategoryAction, animated: true, completion: nil)
+    }
+    
+    
+    func createAlertAction(category: String) -> UIAlertAction {
+        let action = UIAlertAction(title: category, style: .default) { (action) in
+        }
+        
+        return action
+    }
+    
 
 }
+
 
 extension ViewController: UITableViewDataSource {
     
