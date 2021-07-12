@@ -15,6 +15,7 @@
 		F7BA0169269B66EA0092BB4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7BA0168269B66EA0092BB4C /* Assets.xcassets */; };
 		F7BA016C269B66EA0092BB4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F7BA016A269B66EA0092BB4C /* LaunchScreen.storyboard */; };
 		F7BA0174269B70D30092BB4C /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BA0173269B70D30092BB4C /* ItemTableViewCell.swift */; };
+		F7BA0176269C758A0092BB4C /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7BA0175269C758A0092BB4C /* CoreDataManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		F7BA016B269B66EA0092BB4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F7BA016D269B66EA0092BB4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F7BA0173269B70D30092BB4C /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		F7BA0175269C758A0092BB4C /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				F7BA016A269B66EA0092BB4C /* LaunchScreen.storyboard */,
 				F7BA016D269B66EA0092BB4C /* Info.plist */,
 				F7BA0165269B66E80092BB4C /* Vertragsmanager.xcdatamodeld */,
+				F7BA0175269C758A0092BB4C /* CoreDataManager.swift */,
 			);
 			path = Vertragsmanager;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7BA0176269C758A0092BB4C /* CoreDataManager.swift in Sources */,
 				F7BA0161269B66E80092BB4C /* ViewController.swift in Sources */,
 				F7BA0167269B66E80092BB4C /* Vertragsmanager.xcdatamodeld in Sources */,
 				F7BA0174269B70D30092BB4C /* ItemTableViewCell.swift in Sources */,
