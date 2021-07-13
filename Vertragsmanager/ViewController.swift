@@ -49,12 +49,19 @@ class ViewController: UIViewController {
         // Name
         alert.addTextField { (nameTextField) in
             nameTextField.placeholder = "Name"
+            
         }
         
         // Preis
         alert.addTextField { (priceTextField) in
             priceTextField.placeholder = "Preis in € pro Monat"
-
+            priceTextField.keyboardType = .decimalPad
+            
+            // Add Target to this TextField
+            priceTextField.addTarget(self, action: #selector(self.priceTextFieldChange(_:)), for: .editingDidEnd)
+            
+            priceTextField.addTarget(self, action: #selector(self.priceTextFieldChange2(_:)), for: .editingDidBegin)
+            
         }
         
         // Start vom Vertrag
@@ -86,6 +93,17 @@ class ViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
 
     }
+    
+    
+    @objc func priceTextFieldChange(_ textfield: UITextField) {
+        
+    }
+    
+    @objc func priceTextFieldChange2(_ textfield: UITextField) {
+        
+    }
+    
+    
 }
 
 
