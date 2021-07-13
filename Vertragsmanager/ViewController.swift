@@ -34,12 +34,57 @@ class ViewController: UIViewController {
     
     func createAlertAction(category: String) -> UIAlertAction {
         let action = UIAlertAction(title: category, style: .default) { (action) in
-        }
+            let CategoryAsString = action.title!
+            
+            self.createAlertForUserData(category: CategoryAsString)
+        } 
         
         return action
     }
     
+    
+    func createAlertForUserData(category: String) {
+        let alert = UIAlertController(title: "Vertrag hinzufügen", message: nil, preferredStyle:    .alert)
+        
+        // Name
+        alert.addTextField { (nameTextField) in
+            
+        }
+        
+        // Preis
+        alert.addTextField { (priceTextField) in
+            
+        }
+        
+        // Start vom Vertrag
+        alert.addTextField { (startTextField) in
+            
+        }
+        
+        // Dauer vom Vertrag
+        alert.addTextField { (durationTextField) in
+            
+        }
+        
+        // Ende vom Vertrag
+        alert.addTextField { (endTextField) in
+            
+        }
+        
+        let saveAction = UIAlertAction(title: "Speichern", style: .default) { (saveAction) in
+            
+        }
+        
+        let cancelAction = UIAlertAction(title: "Abbrechen", style: .default) { (cancelAction) in
+            
+        }
+        
+        alert.addAction(saveAction)
+        alert.addAction(cancelAction)
+        
+        self.present(alert, animated: true, completion: nil)
 
+    }
 }
 
 
