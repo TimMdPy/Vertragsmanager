@@ -96,11 +96,13 @@ class ViewController: UIViewController {
     
     
     @objc func priceTextFieldChange(_ textfield: UITextField) {
-        
+        if !(textfield.text!.isEmpty) {
+            textfield.text = textfield.text! + "€ im Monat"
+        }
     }
     
     @objc func priceTextFieldChange2(_ textfield: UITextField) {
-        
+        textfield.text = ""
     }
     
     
