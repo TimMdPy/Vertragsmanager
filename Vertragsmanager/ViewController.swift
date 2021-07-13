@@ -37,7 +37,7 @@ class ViewController: UIViewController {
             let CategoryAsString = action.title!
             
             self.createAlertForUserData(category: CategoryAsString)
-        } 
+        }
         
         return action
     }
@@ -48,27 +48,28 @@ class ViewController: UIViewController {
         
         // Name
         alert.addTextField { (nameTextField) in
-            
+            nameTextField.placeholder = "Name"
         }
         
         // Preis
         alert.addTextField { (priceTextField) in
-            
+            priceTextField.placeholder = "Preis in € pro Monat"
+
         }
         
         // Start vom Vertrag
         alert.addTextField { (startTextField) in
-            
+            startTextField.placeholder = "Vertragsbeginn"
         }
         
         // Dauer vom Vertrag
         alert.addTextField { (durationTextField) in
-            
+            durationTextField.placeholder = "Vertragsdauer in Monaten"
         }
         
         // Ende vom Vertrag
         alert.addTextField { (endTextField) in
-            
+            endTextField.placeholder = "Vertrags Ende"
         }
         
         let saveAction = UIAlertAction(title: "Speichern", style: .default) { (saveAction) in
