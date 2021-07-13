@@ -14,6 +14,8 @@ class ViewController: UIViewController {
     var category: [String] = ["Auto", "Telefon", "Haus", "Versicherungen"]
     var images = ["car", "telefon", "home", "versicherungen"]
     
+    // MARK: Variablen
+    var startTextField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,16 +69,20 @@ class ViewController: UIViewController {
         // Start vom Vertrag
         alert.addTextField { (startTextField) in
             startTextField.placeholder = "Vertragsbeginn"
+            startTextField.addTarget(self, action: #selector(self.openCalendarFunction(_:)), for: .touchDown)
+
         }
         
         // Dauer vom Vertrag
         alert.addTextField { (durationTextField) in
             durationTextField.placeholder = "Vertragsdauer in Monaten"
+            durationTextField.keyboardType = .numberPad
         }
         
         // Ende vom Vertrag
         alert.addTextField { (endTextField) in
             endTextField.placeholder = "Vertrags Ende"
+                
         }
         
         let saveAction = UIAlertAction(title: "Speichern", style: .default) { (saveAction) in
@@ -103,6 +109,26 @@ class ViewController: UIViewController {
     
     @objc func priceTextFieldChange2(_ textfield: UITextField) {
         textfield.text = ""
+    }
+    
+
+    @objc func openCalendarFunction(_ textField: UITextField) {
+        startTextField = textField
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        textField.inputView = datePicker
+        datePicker.preferredDatePickerStyle = .wheels
+        
+        datePicker.addTarget(self, action: #selector(self.handleDatePicker(_:)), for: .valueChanged)
+    }
+    
+    @objc func handleDatePicker(_ uiDatePickerView: UIDatePicker) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd MMM yyyy"
+        dateFormatter.locale = Locale(identifier: "de_DE")
+        let dateAsString = dateFormatter.string(from: uiDatePickerView.date)
+        
+        startTextField.text = dateAsString
     }
     
     
