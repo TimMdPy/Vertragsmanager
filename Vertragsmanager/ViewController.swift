@@ -16,6 +16,9 @@ class ViewController: UIViewController {
     
     // MARK: Variablen
     var startTextField = UITextField()
+    let datePicker = UIDatePicker()
+    var endTextField = UITextField()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,10 +80,13 @@ class ViewController: UIViewController {
         alert.addTextField { (durationTextField) in
             durationTextField.placeholder = "Vertragsdauer in Monaten"
             durationTextField.keyboardType = .numberPad
+            
+            durationTextField.addTarget(self, action: #selector(self.calculateEndDate(_:)), for: .editingDidEnd)
         }
         
         // Ende vom Vertrag
         alert.addTextField { (endTextField) in
+            self.endTextField = endTextField
             endTextField.placeholder = "Vertrags Ende"
                 
         }
@@ -114,7 +120,6 @@ class ViewController: UIViewController {
 
     @objc func openCalendarFunction(_ textField: UITextField) {
         startTextField = textField
-        let datePicker = UIDatePicker()
         datePicker.datePickerMode = .date
         textField.inputView = datePicker
         datePicker.preferredDatePickerStyle = .wheels
@@ -129,6 +134,23 @@ class ViewController: UIViewController {
         let dateAsString = dateFormatter.string(from: uiDatePickerView.date)
         
         startTextField.text = dateAsString
+    }
+    
+    @objc func calculateEndDate(_ textField: UITextField) {
+        if !(textField.text!.isEmpty) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd MMM yyyy"
+            dateFormatter.locale = Locale(identifier: "de_DE")
+            
+            let days = Int(textField.text!)! * 30
+            
+            let date = datePicker.date.addingTimeInterval(TimeInterval(60*60*24*days))
+            
+            endTextField.text = dateFormatter.string(from: date)
+            
+            
+                        
+        }
     }
     
     
