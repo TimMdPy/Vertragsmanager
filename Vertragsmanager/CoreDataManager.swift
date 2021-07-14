@@ -27,6 +27,16 @@ class CoreDataManager {
         context = appDelegate.persistentContainer.viewContext
     }
     
+    func getContractItem(section: Int, row: Int) -> Vertrag {
+        switch section {
+        case 0: return carContractCategory[row]
+        case 1: return phoneContractCategory[row]
+        case 2: return homeContractCategory[row]
+        default:
+            return insuranceContractCategory[row]
+        }
+    }
+    
     func count(section: Int) -> Int {
         var count = 0
         switch section {
@@ -43,6 +53,40 @@ class CoreDataManager {
         }
         
         return count
+    }
+    
+    func addNewVertragItem(category: String, name: String, price: String, contractBegin: String, contractDuration: String, contractEnd: String) {
+        
+        // Load ContractObject
+        let contract = NSEntityDescription.insertNewObject(forEntityName: "Vertrag", into: context) as! Vertrag
+        
+        contract.category = category
+        contract.name = name
+        contract.price = price
+        contract.start = contractBegin
+        contract.duration = contractDuration
+        contract.end = contractEnd
+        
+        // Speichern
+        saveContext()
+        
+        switch category {
+        case "Auto": carContractCategory.append(contract)
+        case "Haus": homeContractCategory.append(contract)
+        case "Telefon": phoneContractCategory.append(contract)
+        case "Versicherungen": insuranceContractCategory.append(contract)
+        default:
+            break
+        }
+    }
+    
+    // Speichern
+    func saveContext() {
+        do {
+            try context.save()
+        } catch  {
+            print(error.localizedDescription)
+        }
     }
     
 }

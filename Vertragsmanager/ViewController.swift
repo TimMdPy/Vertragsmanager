@@ -94,9 +94,13 @@ class ViewController: UIViewController {
         let saveAction = UIAlertAction(title: "Speichern", style: .default) { (saveAction) in
             let name = self.checkUserInput(value: alert.textFields![0].text)
             let price = self.checkUserInput(value: alert.textFields![1].text)
-            let contractBeginn = self.checkUserInput(value: alert.textFields![3].text)
-            let contractEnd = self.checkUserInput(value: alert.textFields![4].text)
-
+            let contractBegin = self.checkUserInput(value: alert.textFields![2].text)
+            let contractDurationTime = self.checkUserInput(value: alert.textFields![3].text)
+            let contractend = self.checkUserInput(value: alert.textFields![4].text)
+            
+            CoreDataManager.shared.addNewVertragItem(category: category, name: name, price: price, contractBegin: contractBegin, contractDuration: contractDurationTime, contractEnd: contractend)
+            
+            self.contractTableView.reloadData()
         }
         
         let cancelAction = UIAlertAction(title: "Abbrechen", style: .default) { (cancelAction) in
@@ -175,6 +179,15 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
+        
+        let contract = CoreDataManager.shared.getContractItem(section: indexPath.section, row: indexPath.row)
+        
+        cell.nameLabel.text = contract.name
+        cell.priceLabel.text = contract.price
+        cell.startLabel.text = contract.start
+        cell.durationLabel.text = contract.duration
+        cell.endLabel.text = contract.end
+        
         
         return cell
     }
