@@ -92,7 +92,11 @@ class ViewController: UIViewController {
         }
         
         let saveAction = UIAlertAction(title: "Speichern", style: .default) { (saveAction) in
-            
+            let name = self.checkUserInput(value: alert.textFields![0].text)
+            let price = self.checkUserInput(value: alert.textFields![1].text)
+            let contractBeginn = self.checkUserInput(value: alert.textFields![3].text)
+            let contractEnd = self.checkUserInput(value: alert.textFields![4].text)
+
         }
         
         let cancelAction = UIAlertAction(title: "Abbrechen", style: .default) { (cancelAction) in
@@ -147,9 +151,15 @@ class ViewController: UIViewController {
             let date = datePicker.date.addingTimeInterval(TimeInterval(60*60*24*days))
             
             endTextField.text = dateFormatter.string(from: date)
-            
-            
                         
+        }
+    }
+    
+    func checkUserInput(value: String?) -> String {
+        if let input = value {
+            return input
+        }else {
+            return "Kein Wert vorhanden."
         }
     }
     
