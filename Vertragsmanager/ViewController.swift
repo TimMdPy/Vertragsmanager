@@ -226,5 +226,17 @@ extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40.0
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            // Remove the persistent data and the local data in the section arrays.
+            CoreDataManager.shared.removeContractItem(section: indexPath.section, row: indexPath.row)
+            
+            // Interne function von TableView wo man bei with: eine animation mitgeben kann und wo dann die zeile gelöscht oder (weiß man nicht) einfach tableview.reloadData() ausgeführt wird.
+            tableView.deleteRows(at: [indexPath], with: .fade)
+
+        }
+        
+    }
 }
 

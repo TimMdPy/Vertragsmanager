@@ -41,6 +41,24 @@ class CoreDataManager {
         }
     }
     
+    func removeContractItem(section: Int, row: Int) {
+        
+        // Remove from the container
+        context.delete(getContractItem(section: section, row: row))
+        
+        // Save
+        saveContext()
+        
+        // Remove Data from the Array
+        switch section {
+        case 0: carContractCategory.remove(at: row)
+        case 1: phoneContractCategory.remove(at: row)
+        case 2: homeContractCategory.remove(at: row)
+        default:
+            insuranceContractCategory.remove(at: row)
+        }
+    }
+    
     func count(section: Int) -> Int {
         var count = 0
         switch section {
