@@ -184,9 +184,32 @@ class ViewController: UIViewController {
             
             if let pressIndexPath = self.contractTableView.indexPathForRow(at: longpressLocationPoint) {
                 print("\(pressIndexPath.section) \(pressIndexPath.row)")
+                // TableView hat eine Methode die aus Koordinaten den indexPath (section und zeile) errechnen kann.
+                
+                let alert = createAlertWithtextField(title: "Änderung", message: "Änderungen vornehmen")
+                
+                // Alte Daten anzeigen
+                let contract = CoreDataManager.shared.getContractItem(section: pressIndexPath.section, row: pressIndexPath.row)
+                
+                alert.textFields![0].text = contract.name
+                alert.textFields![1].text = contract.price
+                alert.textFields![2].text = contract.start
+                alert.textFields![3].text = contract.duration
+                alert.textFields![4].text = contract.end
+
+                
+                let saveAction = UIAlertAction(title: "Speichern", style: .default) { (saveAction) in
+                    
+                }
+                
+                let cancelAction = UIAlertAction(title: "Abbrechen", style: .default, handler: nil)
+                
+                alert.addAction(saveAction)
+                alert.addAction(cancelAction)
+                
+                self.present(alert, animated: true, completion: nil)
             }
-            // TableView hat eine Methode die aus Koordinaten den indexPath (section und zeile) errechnen kann.
-        }
+          }
     }
     
     
