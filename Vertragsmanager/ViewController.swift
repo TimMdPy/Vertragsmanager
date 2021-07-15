@@ -49,47 +49,8 @@ class ViewController: UIViewController {
     
     
     func createAlertForUserData(category: String) {
-        let alert = UIAlertController(title: "Vertrag hinzufügen", message: nil, preferredStyle:    .alert)
+        let alert = createAlertWithtextField(title: "Vertrag", message: nil)
         
-        // Name
-        alert.addTextField { (nameTextField) in
-            nameTextField.placeholder = "Name"
-            
-        }
-        
-        // Preis
-        alert.addTextField { (priceTextField) in
-            priceTextField.placeholder = "Preis in € pro Monat"
-            priceTextField.keyboardType = .decimalPad
-            
-            // Add Target to this TextField
-            priceTextField.addTarget(self, action: #selector(self.priceTextFieldChange(_:)), for: .editingDidEnd)
-            
-            priceTextField.addTarget(self, action: #selector(self.priceTextFieldChange2(_:)), for: .editingDidBegin)
-            
-        }
-        
-        // Start vom Vertrag
-        alert.addTextField { (startTextField) in
-            startTextField.placeholder = "Vertragsbeginn"
-            startTextField.addTarget(self, action: #selector(self.openCalendarFunction(_:)), for: .touchDown)
-
-        }
-        
-        // Dauer vom Vertrag
-        alert.addTextField { (durationTextField) in
-            durationTextField.placeholder = "Vertragsdauer in Monaten"
-            durationTextField.keyboardType = .numberPad
-            
-            durationTextField.addTarget(self, action: #selector(self.calculateEndDate(_:)), for: .editingDidEnd)
-        }
-        
-        // Ende vom Vertrag
-        alert.addTextField { (endTextField) in
-            self.endTextField = endTextField
-            endTextField.placeholder = "Vertrags Ende"
-                
-        }
         
         let saveAction = UIAlertAction(title: "Speichern", style: .default) { (saveAction) in
             let name = self.checkUserInput(value: alert.textFields![0].text)
@@ -167,8 +128,65 @@ class ViewController: UIViewController {
         }
     }
     
+    func createAlertWithtextField(title: String, message: String?) -> UIAlertController {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        // Name
+        alert.addTextField { (nameTextField) in
+            nameTextField.placeholder = "Name"
+            
+        }
+        
+        // Preis
+        alert.addTextField { (priceTextField) in
+            priceTextField.placeholder = "Preis in € pro Monat"
+            priceTextField.keyboardType = .decimalPad
+            
+            // Add Target to this TextField
+            priceTextField.addTarget(self, action: #selector(self.priceTextFieldChange(_:)), for: .editingDidEnd)
+            
+            priceTextField.addTarget(self, action: #selector(self.priceTextFieldChange2(_:)), for: .editingDidBegin)
+            
+        }
+        
+        // Start vom Vertrag
+        alert.addTextField { (startTextField) in
+            startTextField.placeholder = "Vertragsbeginn"
+            startTextField.addTarget(self, action: #selector(self.openCalendarFunction(_:)), for: .touchDown)
+
+        }
+        
+        // Dauer vom Vertrag
+        alert.addTextField { (durationTextField) in
+            durationTextField.placeholder = "Vertragsdauer in Monaten"
+            durationTextField.keyboardType = .numberPad
+            
+            durationTextField.addTarget(self, action: #selector(self.calculateEndDate(_:)), for: .editingDidEnd)
+        }
+        
+        // Ende vom Vertrag
+        alert.addTextField { (endTextField) in
+            self.endTextField = endTextField
+            endTextField.placeholder = "Vertrags Ende"
+                
+        }
+        
+        
+        return alert
+    }
+    
     @objc func longPress(_ sender: UIGestureRecognizer) {
         print("UIGestureRecognizer")
+        
+        // Angeben wann longpress ausgeführt werden soll (wenn lange gedrückt wird z.b.)
+        if sender.state == .ended {
+            let longpressLocationPoint = sender.location(in: self.contractTableView) // Sender hat eine eigenschaft die mitliefert wo man gedrückt hat. Dafür muss man aber auch noch mitgeben wo man draufgedrückt hat (contractTableView). Und dann gibt deise Methode von sender x und y koordinaten zurück.
+            
+            if let pressIndexPath = self.contractTableView.indexPathForRow(at: longpressLocationPoint) {
+                print("\(pressIndexPath.section) \(pressIndexPath.row)")
+            }
+            // TableView hat eine Methode die aus Koordinaten den indexPath (section und zeile) errechnen kann.
+        }
     }
     
     
