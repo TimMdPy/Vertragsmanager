@@ -23,8 +23,12 @@ class CoreDataManager {
     static let shared = CoreDataManager()
     
     private init() {
+        // Create Context
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         context = appDelegate.persistentContainer.viewContext
+        
+        // Load Contracts
+        loadContractItems()
     }
     
     func getContractItem(section: Int, row: Int) -> Vertrag {
@@ -84,6 +88,28 @@ class CoreDataManager {
     func saveContext() {
         do {
             try context.save()
+        } catch  {
+            print(error.localizedDescription)
+        }
+    }
+    
+    // Load Data
+    func loadContractItems() {
+        let request: NSFetchRequest<Vertrag> = NSFetchRequest<Vertrag>(entityName: "Vertrag")
+        
+        do {
+            let contractItemArray = try context.fetch(request)
+            
+            for item in contractItemArray {
+                switch item.category {
+                case "Auto": carContractCategory.append(item)
+                case "Telefon": phoneContractCategory.append(item)
+                case "Haus": homeContractCategory.append(item)
+                case "Versicherungen": insuranceContractCategory.append(item)
+                default:
+                    break
+                }
+            }
         } catch  {
             print(error.localizedDescription)
         }
