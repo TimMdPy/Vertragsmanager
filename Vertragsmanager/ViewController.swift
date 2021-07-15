@@ -167,6 +167,10 @@ class ViewController: UIViewController {
         }
     }
     
+    @objc func longPress(_ sender: UIGestureRecognizer) {
+        print("UIGestureRecognizer")
+    }
+    
     
 }
 
@@ -181,6 +185,9 @@ extension ViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ItemCell", for: indexPath) as! ItemTableViewCell
         
         let contract = CoreDataManager.shared.getContractItem(section: indexPath.section, row: indexPath.row)
+        
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_ :)))
+        cell.addGestureRecognizer(longPressRecognizer)
         
         cell.nameLabel.text = contract.name
         cell.priceLabel.text = contract.price
