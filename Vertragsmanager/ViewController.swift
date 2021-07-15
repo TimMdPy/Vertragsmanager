@@ -199,7 +199,17 @@ class ViewController: UIViewController {
 
                 
                 let saveAction = UIAlertAction(title: "Speichern", style: .default) { (saveAction) in
-                    
+                    // Daten überschreiben (bzw. Daten setzten)
+                    contract.setValue(alert.textFields![0].text, forKey: "name")
+                    contract.setValue(alert.textFields![1].text, forKey: "price")
+                    contract.setValue(alert.textFields![2].text, forKey: "start")
+                    contract.setValue(alert.textFields![3].text, forKey: "duration")
+                    contract.setValue(alert.textFields![4].text, forKey: "end")
+
+                    // Speicher wieder (Sonst werden diese Daten nach schließen der App nichtmehr angezeigt.)
+                    CoreDataManager.shared.saveContext()
+
+                    self.contractTableView.reloadData()
                 }
                 
                 let cancelAction = UIAlertAction(title: "Abbrechen", style: .default, handler: nil)
